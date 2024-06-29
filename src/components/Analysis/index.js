@@ -16,6 +16,8 @@ import LanguageCommitCountPie from '../LangCommitCountPie'
 
 import RepoCommitCountPie from '../RepoCommitCountPie'
 
+import RepoCommitCountDescription from '../RepoCommitCountDescription'
+
 import './index.css'
 
 const apiStatusConstants = {
@@ -61,11 +63,61 @@ class Analysis extends Component {
     const {analysisList} = this.state
     const analysisListLength = Object.keys(analysisList).length === 0
     const {
+      quarterCommitCount,
       langRepoCount,
       langCommitCount,
       repoCommitCount,
-      quarterCommitCount,
+      repoCommitCountDescriptions,
     } = analysisList
+
+    const data = [
+      {id: 1, name: 'bookshelf', value: repoCommitCountDescriptions.bookshelf},
+      {
+        id: 2,
+        name: 'kcd-discord-bot-v1',
+        value: repoCommitCountDescriptions['kcd-discord-bot-v1'],
+      },
+      {
+        id: 3,
+        name: 'kentcdodds.com',
+        value: repoCommitCountDescriptions['kentcdodds.com'],
+      },
+      {
+        id: 4,
+        name: 'old-kentcdods.com',
+        value: repoCommitCountDescriptions['old-kentcdodds.com'],
+      },
+      {
+        id: 5,
+        name: 'react-fundamentals',
+        value: repoCommitCountDescriptions['react-fundamentals'],
+      },
+      {
+        id: 6,
+        name: 'react-hoooks',
+        value: repoCommitCountDescriptions['react-hooks'],
+      },
+      {
+        id: 7,
+        name: 'react-performance',
+        value: repoCommitCountDescriptions['react-performance'],
+      },
+      {
+        id: 8,
+        name: 'react-suspense',
+        value: repoCommitCountDescriptions['react-suspense'],
+      },
+      {
+        id: 9,
+        name: 'react-workshop-app',
+        value: repoCommitCountDescriptions['react-workshop-app'],
+      },
+      {
+        id: 10,
+        name: 'testing-react-apps',
+        value: repoCommitCountDescriptions['testing-react-apps'],
+      },
+    ]
 
     return (
       <div className="AnalysisSuccessViewContainer">
@@ -102,16 +154,12 @@ class Analysis extends Component {
                 <RepoCommitCountPie repoCommitCount={repoCommitCount} />
               </div>
               <ul className="list">
-                <li>mahesh. software@Google</li>
-                <li>mahesh. software@Google</li>
-                <li>mahesh. software@Google</li>
-                <li>mahesh. software@Google</li>
-                <li>mahesh. software@Google</li>
-                <li>mahesh. software@Google</li>
-                <li>mahesh. software@Google</li>
-                <li>mahesh. software@Google</li>
-                <li>mahesh. software@Google</li>
-                <li>mahesh. software@Google</li>
+                {data.map(eachItem => (
+                  <RepoCommitCountDescription
+                    description={eachItem}
+                    id={eachItem.id}
+                  />
+                ))}
               </ul>
             </div>
           </>
